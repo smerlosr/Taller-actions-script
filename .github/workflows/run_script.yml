@@ -8,7 +8,12 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+  
+# This allows a subsequently queued workflow run to interrupt previous runs
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+  
 jobs:
   list-issues:
     runs-on: ubuntu-latest
@@ -16,6 +21,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            console.log(context)
             const query = `query($owner:String!, $name:String!, $label:String!) {
               repository(owner:$owner, name:$name){
                 issues(first:100, labels: [$label]) {
