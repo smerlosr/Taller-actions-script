@@ -51,4 +51,3 @@ jobs:
         with:
           script: |
             console.log(context)
-            console.log(variables)
