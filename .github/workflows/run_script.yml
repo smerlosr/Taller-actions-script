@@ -53,13 +53,13 @@ jobs:
       - uses: jungwinter/split@v2
         id: split
         with:
-          msg: '${{ steps.branch-name.outputs.tag#v }}'
+          msg: '${{ steps.branch-name.outputs.tag }}'
           separator: "-"
       - uses: bhowell2/github-substring-action@v1
         id: two
         with:
            value: "abc123"
-           length_from_start: 3
+           length_from_start: 2
            output_name: "sufix"
       - name: 'Sufix'
         #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.sufix)
