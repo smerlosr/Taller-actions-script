@@ -38,12 +38,7 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: v1.0.0
-      - name: 'Get list tag'
-        env:
-           COMMIT_VAR: git for-each-ref --sort=taggerdate --format '%(tag)'
-        run: |
-          echo ${COMMIT_VAR} 
-          
+
       - uses: jungwinter/split@v2
         id: splittag
         with:
@@ -58,6 +53,10 @@ jobs:
       - name: 'Sufix'
         if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
         run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.clean.outputs.result }}
+        
+      - name: 'Check tag'
+        id: checktag
+        run: echo tag version ${{ steps.split.outputs._0 }}
 
 
 
