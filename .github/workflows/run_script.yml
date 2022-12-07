@@ -59,7 +59,7 @@ jobs:
         id: two
         with:
            value: "abc123"
-           length_from_end: 2
+           length_from_end: 3
            output_name: "sufix"
       - name: 'Sufix'
         #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.sufix)
