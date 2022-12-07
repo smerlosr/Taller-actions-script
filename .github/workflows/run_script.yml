@@ -58,7 +58,7 @@ jobs:
       - uses: bhowell2/github-substring-action@latest
         id: two
         with:
-          value: '${{ steps.split.outputs._1 }}nnnnnnn'
+          value: "PPnnnnnnn"
           length_from_start: 2
           output_name: "sufix"
       - name: 'Sufix'
