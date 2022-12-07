@@ -60,8 +60,8 @@ jobs:
       - name: 'Create Release branch'
         if: steps.clean.outputs.result == 'CC'
         run: |
-          git checkout -b release/${{ steps.splittag.outputs._1 }} ${{ steps.branch-name.outputs.tag }}
-          git push origin release/${{ steps.splittag.outputs._1 }}
+          git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
+          git push origin release/${{ steps.splittag.outputs._0 }}
 
       - uses: actions/github-script@v6
         with:
