@@ -56,7 +56,7 @@ jobs:
         id: git-tag
         shell: bash
         run: |
-          split=(${steps.branch-name.outputs.tag//-// })
+          split=(${steps.branch-name.outputs.tag//-/})
           index=$((${#split[@]}-1))
           DOCKER_TAG=${split[$index]}
           echo DOCKER_TAG=$DOCKER_TAG >> $GITHUB_ENV
