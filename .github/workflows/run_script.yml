@@ -57,6 +57,7 @@ jobs:
         if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
         run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.clean.outputs.result }}
       - name: Get git tags
+        uses: actions/github-script@v6
         id: tagsssss
         with:
            script:
@@ -66,6 +67,7 @@ jobs:
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
          stringArray: ${{ steps.tagsssss.outputs.stringList  }}
+         
       - name: Print modified files
         run: echo '${{ steps.tag_list.outputs.stringList }}'
 
