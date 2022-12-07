@@ -55,12 +55,6 @@ jobs:
         with:
           msg: '${{ steps.branch-name.outputs.tag }}'
           separator: "-"
-      - uses: bhowell2/github-substring-action@v1
-        id: two
-        with:
-           value: "abc123"
-           length_from_end: 3
-           output_name: "sufix"
       - uses: web3j/substr-action@v1.2
         id: clean
         with:
@@ -68,7 +62,7 @@ jobs:
           start: '0'
           length: '2'
       - name: 'Sufix'
-        #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
+        if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
         run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.clean.outputs.result }}
         
       - uses: actions/github-script@v6
