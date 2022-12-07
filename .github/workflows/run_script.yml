@@ -15,6 +15,8 @@ on:
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
+env:
+  SUFIX: ("AD", "RT", "CC", "RC")
   
 jobs:
   run-sript:
@@ -47,8 +49,18 @@ jobs:
         with:
           fallback: echo "${{ steps.previoustag.outputs.tag }}"
       - name: 'Get list tag'
+        id: listtags
         run: |
           git tag -l -n "v1*"
+      - name: determine tag by splitting 
+        id: git-tag
+        shell: bash
+        run: |
+          split=(${steps.branch-name.outputs.tag//-// })
+          index=$((${#split[@]}-1))
+          DOCKER_TAG=${split[$index]}
+          echo DOCKER_TAG=$DOCKER_TAG >> $GITHUB_ENV
+          echo "::set-output name=DOCKER_TAG::$DOCKER_TAG"
       - uses: actions/github-script@v6
         with:
           script: |
