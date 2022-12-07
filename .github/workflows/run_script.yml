@@ -64,7 +64,7 @@ jobs:
       - uses: web3j/substr-action@v1.2
         with:
           value: 'RC17'
-          start: '1'
+          start: '0'
           length: '2'
       - name: 'Sufix'
         #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.sufix)
