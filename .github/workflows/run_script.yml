@@ -51,12 +51,9 @@ jobs:
           start: '0'
           length: '2'
       - name: 'Sufix'
-        if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
-        run: echo Sufixing ${{ steps.splittag.outputs._1 }} corte ${{ steps.clean.outputs.result }}
-        
-      - name: 'Check tag'
-        id: checktag
-        run: git push --delete origin ${{ steps.branch-name.outputs.tag }} 
+        if: |
+          !contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
+        run: git push --delete origin ${{ steps.branch-name.outputs.tag }}
       
 
 
