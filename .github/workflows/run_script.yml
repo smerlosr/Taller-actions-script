@@ -40,7 +40,7 @@ jobs:
           fallback: v1.0.0
       - name: 'Get list tag'
         run: |
-          git for-each-ref --sort=taggerdate --format '%(tag)'
+          listags = git for-each-ref --sort=taggerdate --format '%(tag)'
           
       - uses: jungwinter/split@v2
         id: splittag
