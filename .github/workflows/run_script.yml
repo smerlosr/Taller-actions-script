@@ -47,7 +47,7 @@ jobs:
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
-          fallback: echo "${{ steps.previoustag.outputs.tag }}"
+          fallback: v1.0.0
       - name: 'Get list tag'
         id: listtags
         run: |
