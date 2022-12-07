@@ -54,11 +54,14 @@ jobs:
         if: |
           !contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
         run: |
-          git push --delete origin ${{ steps.branch-name.outputs.tag }}
           echo "tag no corecto -> ${{ steps.branch-name.outputs.tag }}"
+          git push --delete origin ${{ steps.branch-name.outputs.tag }}          
           echo "::stop-commands::$stopMarker"  
-
-
+      - name: 'Create Release branch'
+        if: steps.clean.outputs.result == 'CC'
+        run: |
+          git checkout develop
+          git checkout -b release/${{ steps.branch-name.outputs.tag }}
 
       - uses: actions/github-script@v6
         with:
