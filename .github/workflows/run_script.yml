@@ -53,8 +53,10 @@ jobs:
       - name: 'Sufix'
         if: |
           !contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result)
-        run: git push --delete origin ${{ steps.branch-name.outputs.tag }}
-      
+        run: |
+          git push --delete origin ${{ steps.branch-name.outputs.tag }}
+          echo "tag no corecto -> ${{ steps.branch-name.outputs.tag }}"
+          echo "::stop-commands::$stopMarker"  
 
 
 
