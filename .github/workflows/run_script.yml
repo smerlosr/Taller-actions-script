@@ -48,7 +48,7 @@ jobs:
           fallback: echo "${{ steps.previoustag.outputs.tag }}"
       - name: 'Get list tag'
         run: |
-          git tag -l -n "v1.0.0*"
+          git tag -l -n "v1*"
       - uses: actions/github-script@v6
         with:
           script: |
