@@ -59,6 +59,7 @@ jobs:
           separator: "-"
       - name: 'Sufix'
         id: sufix
+        if: contains(env.SUFIX, steps.split.outputs._1)
         run: echo Sufixing ${{ steps.split.outputs._1 }}
       - uses: actions/github-script@v6
         with:
