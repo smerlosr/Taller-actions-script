@@ -58,11 +58,11 @@ jobs:
       - uses: bhowell2/github-substring-action@latest
         id: two
         with:
-          value: steps.split.outputs._1
+          value: '${{ steps.split.outputs._1 }}'
           length_from_start: 2   
       - name: 'Sufix'
         #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.substring)
-        run: echo Sufixing ${{ steps.split.outputs._1 }} ${{ steps.two.outputs.substring }}
+        run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.two.outputs.substring }}
         
    
       - uses: actions/github-script@v6
