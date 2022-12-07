@@ -59,10 +59,11 @@ jobs:
         id: two
         with:
           value: '${{ steps.split.outputs._1 }}nnnnnnn'
-          length_from_start: 2   
+          length_from_start: 2
+          output_name: "sufix"
       - name: 'Sufix'
-        #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.substring)
-        run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.two.outputs.substring }}
+        #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.sufix)
+        run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.two.outputs.sufix }}
         
       - uses: actions/github-script@v6
         with:
