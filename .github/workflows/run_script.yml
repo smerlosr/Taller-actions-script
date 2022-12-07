@@ -39,8 +39,10 @@ jobs:
         with:
           fallback: v1.0.0
       - name: 'Get list tag'
+        env:
+           COMMIT_VAR: git for-each-ref --sort=taggerdate --format '%(tag)'
         run: |
-          listags = git for-each-ref --sort=taggerdate --format '%(tag)'
+          echo ${COMMIT_VAR} 
           
       - uses: jungwinter/split@v2
         id: splittag
