@@ -56,11 +56,15 @@ jobs:
           msg: '${{ steps.branch-name.outputs.tag }}'
           separator: "-"
       - name: 'Sufix'
-        if: contains(fromJson('["AD", "RT", "CC", "RC"]'), '${{ steps.split.outputs._1 }}')
-        run: echo Sufixing ${{ steps.split.outputs._1 }}
-      - name: 'NoSufix'
         if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.split.outputs._1)
-        run: echo NoSufixing ${{ steps.split.outputs._1 }}
+        run: echo Sufixing ${{ steps.split.outputs._1 }}
+        
+      - uses: bhowell2/github-substring-action@latest
+        id: two
+        with:
+          value: "abc123"
+          index_of_str: 0
+          length_from_start: 2      
       - uses: actions/github-script@v6
         with:
           script: |
