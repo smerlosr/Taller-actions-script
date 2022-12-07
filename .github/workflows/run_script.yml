@@ -52,15 +52,14 @@ jobs:
         id: listtags
         run: |
           git tag -l -n "v1*"
-      - name: determine tag by splitting 
-        id: git-tag
-        shell: bash
-        run: |
-          split=(${steps.branch-name.outputs.tag//-/})
-          index=$((${#split[@]}-1))
-          DOCKER_TAG=${split[$index]}
-          echo DOCKER_TAG=$DOCKER_TAG >> $GITHUB_ENV
-          echo "::set-output name=DOCKER_TAG::$DOCKER_TAG"
+      - uses: jungwinter/split@v2
+        id: split
+        with:
+          msg: '${{ steps.branch-name.outputs.tag }}'
+          separator: "-"
+      - name: 'Sufix'
+        id: sufix
+        run: echo Sufixing ${{ steps.split.outputs._1 }}
       - uses: actions/github-script@v6
         with:
           script: |
