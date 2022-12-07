@@ -61,10 +61,11 @@ jobs:
            value: "abc123"
            length_from_end: 3
            output_name: "sufix"
-      - name: 'clean'
-        run: |
-            id=$(echo ${{steps.two.outputs.sufix} | cut -d- -f2)
-            echo "::set-output name=id::$id"     
+      - uses: web3j/substr-action@v1.2
+        with:
+          value: 'RC17'
+          start: '1'
+          length: '2'
       - name: 'Sufix'
         #if: contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.two.outputs.sufix)
         run: echo Sufixing ${{ steps.split.outputs._1 }} corte ${{ steps.two.outputs.sufix }}
