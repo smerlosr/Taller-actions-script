@@ -63,7 +63,6 @@ jobs:
         id: two
         with:
           value: "abc123"
-          index_of_str: 0
           length_from_start: 2      
       - uses: actions/github-script@v6
         with:
