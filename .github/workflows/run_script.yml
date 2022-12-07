@@ -46,7 +46,9 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: echo "${{ steps.previoustag.outputs.tag }}"
-      
+      - name: 'Get list tag'
+        run: |
+          git tag -l -n "v1.0.0*"
       - uses: actions/github-script@v6
         with:
           script: |
