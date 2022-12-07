@@ -55,7 +55,7 @@ jobs:
         with:
           msg: '${{ steps.branch-name.outputs.tag }}'
           separator: "-"
-      - uses: bhowell2/github-substring-action@latest
+      - uses: bhowell2/github-substring-action@v1
         id: two
         with:
           value: "PPnnnnnnn"
