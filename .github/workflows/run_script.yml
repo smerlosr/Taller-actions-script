@@ -56,7 +56,8 @@ jobs:
         
       - name: 'Check tag'
         id: checktag
-        run: git push --delete origin ${{ steps.branch-name.outputs.tag }}
+        run: git push --delete origin ${{ steps.branch-name.outputs.tag }} 
+      
 
 
 
