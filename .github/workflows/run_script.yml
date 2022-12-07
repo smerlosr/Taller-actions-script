@@ -61,7 +61,7 @@ jobs:
         id: tagsssss
         with:
            script:
-                   const stringList = git for-each-ref --sort=taggerdate --format '%(tag)'
+                   stringList = $(git for-each-ref --sort=taggerdate --format '%(tag)')
       - name: Create list of tags
         id: tag_list
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
