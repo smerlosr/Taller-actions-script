@@ -37,7 +37,7 @@ jobs:
       - name: 'List tags'
         id: listags
         run: |
-          echo "TAGS=$(git for-each-ref --sort=taggerdate --format '%(tag)'" >> $GITHUB_OUTPUT
+          echo "TAGS='pepe'" >> $GITHUB_OUTPUT
 
         #echo "GITHUB_SHA_SHORT=$(echo $git for-each-ref --sort=taggerdate --format '%(tag)'" >> $GITHUB_ENV
       - name: Test
