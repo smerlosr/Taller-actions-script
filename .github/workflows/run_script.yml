@@ -72,7 +72,7 @@ jobs:
           !contains(fromJson('["AD", "RT", "CC", "RC", ""]'), steps.cleantag.outputs.result)
         run: |
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
-           git push --delete origin ${{ steps.branch-name.outputs.tag }}        
+           #git push --delete origin ${{ steps.branch-name.outputs.tag }}        
           
       - name: 'Create Release branch'
         if: steps.cleantag.outputs.result == 'CC' && steps.cleanprev.outputs.result == 'RT'
