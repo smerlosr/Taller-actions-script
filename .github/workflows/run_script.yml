@@ -38,14 +38,19 @@ jobs:
         with:
            stringArray: '$( echo git tag -l --sort=creatordate v1)'    
            
-      - name: 'List tags'
-        id: listags
+      - name: Find Tag
+        id: tagger
+        uses: jimschubert/query-tag-action@v1
+        with:
+         include: 'v*'
+         commit-ish: 'HEAD~'
+        # if you unshallow in a separate step, use the following option:
+        # skip-unshallow: 'true'
+      - name: Show Tag
+        id: display
         run: |
-          echo "TAGS=$(git tag -l --sort=creatordate v1.0.0-AD)" >> $GITHUB_OUTPUT
-
-        #echo "GITHUB_SHA_SHORT=echo git tag -l --sort=creatordate  --count=10 v*" >> $GITHUB_ENV
-      - name: Test
-        run: echo ${{ steps.listags.outputs.TAGS }}
+          echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
+          
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
