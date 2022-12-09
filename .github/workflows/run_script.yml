@@ -33,24 +33,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Required due to the way Git works, without it this action won't be able to find any or the correct tags
-      - name: Create list from array of strings
-        uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
-        with:
-           stringArray: '$( echo git tag -l --sort=creatordate v1)'    
-           
-      - uses: oprypin/find-latest-tag@v1
-        with:
-           repository: octokit/rest.js  # The repository to scan.
-           releases-only: false  # We know that all relevant tags have a GitHub release for them.
-        id: octokit  # The step ID to refer to later.
-
-      - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
-          
       - name: 'Get Previous tag'
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        with:
-          fallback: v1.0.0
+        run: echo "tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))" >> $GITHUB_OUTPUT 
+        
+        
+        
       - uses: jungwinter/split@v2
         id: splitprevtag
         with:
