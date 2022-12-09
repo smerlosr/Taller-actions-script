@@ -41,6 +41,17 @@ jobs:
           script:
              echo "Previous tag  -> ${{ steps.previoustag.outputs.tag }}"
       - uses: jungwinter/split@v2
+        id: splitprevtag
+        with:
+          msg: '${{ steps.previoustag.outputs.tag }}'
+          separator: "-"
+      - uses: web3j/substr-action@v1.2
+        id: cleanprev
+        with:
+          value: '${{ steps.splitprevtag.outputs._1 }}'
+          start: '0'
+          length: '2'             
+      - uses: jungwinter/split@v2
         id: splittag
         with:
           msg: '${{ steps.branch-name.outputs.tag }}'
@@ -64,10 +75,10 @@ jobs:
           git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
           git push origin release/${{ steps.splittag.outputs._0 }}
       - name: 'Check Tag Suffix'
-        if: steps.clean.outputs.result == 'AD'
+        if: steps.clean.outputs.result == 'AD' || steps.cleanprev.outputs.result != ''
         run: |
-          git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
-          git push origin release/${{ steps.splittag.outputs._0 }}
+           echo "tag no corecto -> ${{ steps.branch-name.outputs.tag }}"
+           git push --delete origin ${{ steps.branch-name.outputs.tag }} 
       - uses: actions/github-script@v6
         with:
           script: |
