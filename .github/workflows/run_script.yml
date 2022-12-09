@@ -38,18 +38,13 @@ jobs:
         with:
            stringArray: '$( echo git tag -l --sort=creatordate v1)'    
            
-      - name: Find Tag
-        id: tagger
-        uses: jimschubert/query-tag-action@v1
+      - uses: oprypin/find-latest-tag@v1
         with:
-         include: 'v*'
-         commit-ish: 'HEAD~'
-        # if you unshallow in a separate step, use the following option:
-        # skip-unshallow: 'true'
-      - name: Show Tag
-        id: display
-        run: |
-          echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
+           repository: octokit/rest.js  # The repository to scan.
+           releases-only: false  # We know that all relevant tags have a GitHub release for them.
+        id: octokit  # The step ID to refer to later.
+
+      - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
           
       - name: 'Get Previous tag'
         id: previoustag
