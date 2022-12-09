@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 0 # Required due to the way Git works, without it this action won't be able to find any or the correct tags
       - name: 'List tags'
         id: listags
-        run:  echo "list = git for-each-ref --sort=taggerdate --format '%(tag)'" >> >> $GITHUB_OUTPUT
+        run:  echo "list = git for-each-ref --sort=taggerdate --format '%(tag)'" >> $GITHUB_OUTPUT
         
       - name: 'Get Previous tag'
         id: previoustag
