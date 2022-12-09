@@ -38,6 +38,10 @@ jobs:
         run: |
           echo "list = git for-each-ref --sort=taggerdate --format '%(tag)'" >> $GITHUB_OUTPUT
           echo echo ${{needs.listags.outputs.list}}
+      - run: |
+          export FOO=git for-each-ref --sort=taggerdate --format '%(tag)'
+          echo "::set-env name=FOO::$FOO"
+      - run: echo $FOO  
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
