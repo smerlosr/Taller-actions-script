@@ -38,7 +38,8 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: v1.0.0
-
+          script:
+             echo "Previous tag  -> ${{ steps.previoustag.outputs.tag }}"
       - uses: jungwinter/split@v2
         id: splittag
         with:
@@ -62,7 +63,11 @@ jobs:
         run: |
           git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
           git push origin release/${{ steps.splittag.outputs._0 }}
-
+      - name: 'Check Tag Suffix'
+        if: steps.clean.outputs.result == 'AD'
+        run: |
+          git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
+          git push origin release/${{ steps.splittag.outputs._0 }}
       - uses: actions/github-script@v6
         with:
           script: |
