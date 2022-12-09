@@ -36,7 +36,7 @@ jobs:
       
       - name: 'Get Previous tag'
         id: previoustag
-        run: echo "tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1 --walk-reflogs)))" >> $GITHUB_OUTPUT 
+        run: echo "tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1 --walk-reflogs))" >> $GITHUB_OUTPUT 
                 
       - name: 'Show Previous tag'
         run: echo "Previous tag -> ${{ steps.previoustag.outputs.tag }}"
