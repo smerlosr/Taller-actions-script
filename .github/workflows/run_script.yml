@@ -85,19 +85,19 @@ jobs:
         if: steps.cleantag.outputs.result == 'AD' && steps.cleanprev.outputs.result != ''
         run: |
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
-           git push --delete origin ${{ steps.branch-name.outputs.tag }} 
+           #git push --delete origin ${{ steps.branch-name.outputs.tag }} 
            
       - name: 'Check Tag Suffix TR'
         if: steps.cleantag.outputs.result == 'TR' && steps.cleanprev.outputs.result != 'AD'
         run: |
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
-           git push --delete origin ${{ steps.branch-name.outputs.tag }}
+           #git push --delete origin ${{ steps.branch-name.outputs.tag }}
            
       - name: 'Check Tag Suffix AD'
         if: steps.cleantag.outputs.result == 'AD' && steps.cleanprev.outputs.result != ''
         run: |
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
-           git push --delete origin ${{ steps.branch-name.outputs.tag }}
+           #git push --delete origin ${{ steps.branch-name.outputs.tag }}
            
            
            
