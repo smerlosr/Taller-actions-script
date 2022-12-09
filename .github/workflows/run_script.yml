@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
   
 jobs:
-  run-sript:
+  run-script:
     runs-on: ubuntu-latest
     steps:
       - name: Get branch names
@@ -38,8 +38,6 @@ jobs:
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
           fallback: v1.0.0
-          script:
-             echo "Previous tag  -> ${{ steps.previoustag.outputs.tag }}"
       - uses: jungwinter/split@v2
         id: splitprevtag
         with:
