@@ -37,7 +37,7 @@ jobs:
       - name: 'List tags'
         id: listags
         run: |
-          echo "TAGS=$(git tag -l --sort=creatordate  --count=10 v*)" >> $GITHUB_OUTPUT
+          echo "TAGS=$(git tag -l --sort=creatordate v*)" >> $GITHUB_OUTPUT
 
         #echo "GITHUB_SHA_SHORT=echo git tag -l --sort=creatordate  --count=10 v*" >> $GITHUB_ENV
       - name: Test
