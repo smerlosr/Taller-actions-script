@@ -52,11 +52,12 @@ jobs:
           length: '2'
       - name: 'Sufix'
         if: |
-          !contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result) || (steps.clean.outputs.result==0)
+          !contains(fromJson('["AD", "RT", "CC", "RC"]'), steps.clean.outputs.result) || 
+            steps.clean.outputs.result==''
         run: |
           echo "tag no corecto -> ${{ steps.branch-name.outputs.tag }}"
           git push --delete origin ${{ steps.branch-name.outputs.tag }}          
-          echo "::stop-commands::$stopMarker"  
+          #echo "::stop-commands::$stopMarker"  
       - name: 'Create Release branch'
         if: steps.clean.outputs.result == 'CC'
         run: |
