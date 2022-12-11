@@ -79,9 +79,9 @@ jobs:
       - name: 'Create Release branch'
         if: steps.cleantag.outputs.result == 'CC' && steps.cleanprev.outputs.result == 'RT'
         run: |
-          git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
-          git push origin release/${{ steps.splittag.outputs._0 }}
-          git tag -a ${{ steps.splittag.outputs._0 }}-RC1 -m "RC1 created from ${{ steps.splittag.outputs._0 }}"
+          #git checkout -b release/${{ steps.splittag.outputs._0 }} ${{ steps.branch-name.outputs.tag }}
+          #git push origin release/${{ steps.splittag.outputs._0 }}
+          #git tag -a ${{ steps.splittag.outputs._0 }}-RC1 -m "RC1 created from ${{ steps.splittag.outputs._0 }}"
           
       - name: 'Check Tag Suffix AD'
         if: steps.cleantag.outputs.result == 'AD' && steps.cleanprev.outputs.result != ''
