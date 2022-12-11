@@ -105,7 +105,14 @@ jobs:
         with:
           path: 'wiki'
           token: ${{ secrets.GITHUB_TOKEN }}     
-           
+      - name: Update GitHub Profile README
+        uses: theboi/github-update-readme@v1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          header: "Hey, sOY iNETUM"
+          subhead: "eSTO ES EL SUB HEAD"
+          footer: "pIE DE PAGINA"           
       - uses: actions/github-script@v6
         with:
           script: |
