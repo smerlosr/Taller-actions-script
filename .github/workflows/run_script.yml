@@ -101,10 +101,11 @@ jobs:
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
            #git push --delete origin ${{ steps.branch-name.outputs.tag }}
            
-      - uses: OrlovM/Wiki-Action@v1
-        with:
-          path: 'wiki'
-          token: ${{ secrets.GITHUB_TOKEN }}     
+      #- uses: OrlovM/Wiki-Action@v1
+      #  with:
+      #    path: 'wiki'
+      #    token: ${{ secrets.GITHUB_TOKEN }}  
+          
       - name: Update GitHub Profile README
         uses: theboi/github-update-readme@v1.0
         env:
