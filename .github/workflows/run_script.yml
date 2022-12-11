@@ -8,6 +8,8 @@ on:
   push:
     tags:
       - 'v*'
+    paths:
+      - 'wiki/**'  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -99,7 +101,10 @@ jobs:
            echo "tag prev no correcto -> ${{ steps.branch-name.outputs.tag }}"
            #git push --delete origin ${{ steps.branch-name.outputs.tag }}
            
-           
+      - uses: OrlovM/Wiki-Action@v1
+        with:
+          path: 'wiki'
+          token: ${{ secrets.GITHUB_TOKEN }}     
            
       - uses: actions/github-script@v6
         with:
